@@ -1,4 +1,5 @@
-public final class Types{
+public final class Types
+{
 
     static enum NodeTypes 
     {
@@ -15,11 +16,14 @@ public final class Types{
     }
 
 
-    static String[] Nodes =    {"Start",
-                        "Circle",
+    static String[] Nodes =    
+                        {
+                        "START",
+                        "CIRCLE",
                         "DB",
                         "PROCESS",
-                        "END"};
+                        "END"
+                        };
     
     
     static String NodeType(Types.NodeTypes type)

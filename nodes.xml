@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<circleNodeList>
-    <l id="e2127eec-52fb-4705-8682-4c4f20cadc89" type="Circle"/>
-    <l id="19679617-3472-4a65-b1fb-744a0c7f5588" type="Circle"/>
-    <l id="801681e9-bbe6-4f1f-8ee4-ca3a0e452637" type="Circle"/>
-    <list id="e2127eec-52fb-4705-8682-4c4f20cadc89" type="Circle"/>
-    <list id="19679617-3472-4a65-b1fb-744a0c7f5588" type="Circle"/>
-    <list id="801681e9-bbe6-4f1f-8ee4-ca3a0e452637" type="Circle"/>
-</circleNodeList>
+<nodes>
+    <node id="76a4cfd2-a3d4-4f17-8e4f-262ffeee7be9" type="Circle">
+        <nextNode>empty</nextNode>
+        <previousNode>empty</previousNode>
+        <printProperty>empty</printProperty>
+    </node>
+    <node id="aae927d5-ffb2-41d9-a440-47403a52abfc" type="Circle">
+        <nextNode>empty</nextNode>
+        <previousNode>empty</previousNode>
+        <printProperty>empty</printProperty>
+    </node>
+    <node id="ea526c27-75af-4a46-864b-8b13586a80ef" type="Circle">
+        <nextNode>empty</nextNode>
+        <previousNode>empty</previousNode>
+        <printProperty>empty</printProperty>
+    </node>
+</nodes>

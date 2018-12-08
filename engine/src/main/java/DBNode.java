@@ -4,28 +4,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-class DBNode extends Node{
+class DBNode extends Node
+{
 
     public DBNode() {
 
     }
 
-    public DBNode(String type) {
+    public DBNode(String type)
+    {
 
         this.type = type;
     }
 
     @XmlAttribute
-    public String getId() {
+    public String getId()
+    {
         return id.toString();  
     }
 
     @XmlAttribute
-    public String getType() {
+    public String getType()
+    {
         return type;  
     }
 
-    public void setType(String type) {  
+    public void setType(String type)
+    {  
         this.type = type;  
     }
 
