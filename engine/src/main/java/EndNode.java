@@ -8,8 +8,8 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
-@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction", "printProperty"})
-class CircleNode extends Node
+@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction"})
+class EndNode extends Node
 {
 
     private String connectedAction = null;
@@ -17,17 +17,17 @@ class CircleNode extends Node
     private String previousNode = null;
     private String nextNode = null;
 
-    private String printProperty = null;
 
-    public CircleNode()
+    public EndNode()
     {
 
     }
 
-    public CircleNode(String type, UUID id)
+    public EndNode(String type,  UUID id)
     {
         this.type = type;
         this.id = id.toString();
+
         this.uuid = id;
     }
 
@@ -95,21 +95,7 @@ class CircleNode extends Node
     }
 
     public void setNextNode(String nextNode) {
-        this.nextNode = nextNode;
-    }
-
-    @XmlElement(name = "printProperty")
-    public String getPrintProperty()
-    {
-
-        if(printProperty != null)
-            return printProperty;
-        return null;
-        
-    }
-
-    public void setPrintProperty(String printProperty) {
-        this.printProperty = printProperty;
+       
     }
 
     @Override

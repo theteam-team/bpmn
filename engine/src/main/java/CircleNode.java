@@ -1,16 +1,21 @@
+
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 
 @XmlRootElement
+@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction", "printProperty"})
 class CircleNode extends Node
 {
 
-    private UUID previousNode = null;
-    private UUID nextNode = null;
+    private String connectedAction = null;
+
+    private String previousNode = null;
+    private String nextNode = null;
 
     private String printProperty = null;
 
@@ -19,15 +24,27 @@ class CircleNode extends Node
 
     }
 
-    public CircleNode(String type)
+    public CircleNode(String type, UUID id)
     {
         this.type = type;
+        this.id = id.toString();
+        this.uuid = id;
     }
 
     @XmlAttribute
     public String getId()
     {
         return id.toString();  
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public UUID getUUId()
+    {
+        return uuid;  
     }
 
     @XmlAttribute
@@ -41,19 +58,32 @@ class CircleNode extends Node
         this.type = type;  
     }
 
+    @XmlElement(name = "connectedAction")
+    public String getConnectedAction()
+    {
+
+        if(connectedAction != null)
+            return connectedAction.toString();
+        return null;
+    }
+
+    public void setConnectedAction(String connectedAction) {
+        this.connectedAction = connectedAction;
+    }
+
     @XmlElement(name = "previousNode")
     public String getPreviousNode()
     {
 
         if(previousNode != null)
             return previousNode.toString();
-        return "empty";
+        return null;
         
     }
 
-    /*public void setPreviousNode(UUID previousNode) {
+    public void setPreviousNode(String previousNode) {
         this.previousNode = previousNode;
-    }*/
+    }
 
     @XmlElement(name = "nextNode")
     public String getNextNode()
@@ -61,12 +91,12 @@ class CircleNode extends Node
 
         if(nextNode != null)
             return nextNode.toString();
-        return "empty";
+        return null;
     }
 
-    /*public void setNextNode(UUID nextNode) {
+    public void setNextNode(String nextNode) {
         this.nextNode = nextNode;
-    }*/
+    }
 
     @XmlElement(name = "printProperty")
     public String getPrintProperty()
@@ -74,18 +104,18 @@ class CircleNode extends Node
 
         if(printProperty != null)
             return printProperty;
-        return "empty";
+        return null;
         
     }
 
-    /*public void setPrintProperty(String printProperty) {
+    public void setPrintProperty(String printProperty) {
         this.printProperty = printProperty;
-    }*/
+    }
 
     @Override
     void run()
     {
-        System.out.println(getId() + " " + getType());
+        System.out.println(getPrintProperty());
     }
 
 }

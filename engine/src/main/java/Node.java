@@ -2,8 +2,30 @@ import java.util.UUID;
 
 public abstract class Node
 {
-    protected UUID id = UUID.randomUUID();
+    protected String id;
+    protected UUID uuid;
     String type;
-    
+
+    abstract String getId();
+    abstract void setId(String id);
+
+    abstract UUID getUUId();
+
+    abstract String getType(); 
+
+    abstract void setType(String type);
+
+    abstract String getConnectedAction();
+
+    abstract void setConnectedAction(String connectedAction);
+
+    abstract String getPreviousNode();
+
+    abstract void setPreviousNode(String previousNode);
+
+    abstract String getNextNode();
+
+    abstract void setNextNode(String nextNode);
+
     abstract void run();
 }

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <nodes>
-    <node id="76a4cfd2-a3d4-4f17-8e4f-262ffeee7be9" type="Circle">
-        <nextNode>empty</nextNode>
-        <previousNode>empty</previousNode>
-        <printProperty>empty</printProperty>
-    </node>
-    <node id="aae927d5-ffb2-41d9-a440-47403a52abfc" type="Circle">
-        <nextNode>empty</nextNode>
-        <previousNode>empty</previousNode>
-        <printProperty>empty</printProperty>
-    </node>
-    <node id="ea526c27-75af-4a46-864b-8b13586a80ef" type="Circle">
-        <nextNode>empty</nextNode>
-        <previousNode>empty</previousNode>
-        <printProperty>empty</printProperty>
-    </node>
+    <startNode id="31a97276-163a-473f-82a4-492cac423a72" type="START">
+        <nextNode>7f35a2ef-ef3e-402d-846f-44a0570a9d04</nextNode>
+    </startNode>
+    <dbNode id="4cd78176-2f72-4586-b615-3a69a3ecbc9d" type="DB">
+        <connectedNode>b10d3c1b-da23-4eab-a348-d31062f3fba1</connectedNode>
+    </dbNode>
+    <circleNode id="7f35a2ef-ef3e-402d-846f-44a0570a9d04" type="CIRCLE">
+        <previousNode>31a97276-163a-473f-82a4-492cac423a72</previousNode>
+        <nextNode>b10d3c1b-da23-4eab-a348-d31062f3fba1</nextNode>
+        <printProperty>Circle 1</printProperty>
+    </circleNode>
+    <circleNode id="b10d3c1b-da23-4eab-a348-d31062f3fba1" type="CIRCLE">
+        <previousNode>7f35a2ef-ef3e-402d-846f-44a0570a9d04</previousNode>
+        <nextNode>f6e86bc0-9a39-408c-ae6f-74d084454840</nextNode>
+        <connectedAction>4cd78176-2f72-4586-b615-3a69a3ecbc9d</connectedAction>
+        <printProperty>Circle 2</printProperty>
+    </circleNode>
+    <circleNode id="f6e86bc0-9a39-408c-ae6f-74d084454840" type="CIRCLE">
+        <previousNode>b10d3c1b-da23-4eab-a348-d31062f3fba1</previousNode>
+        <nextNode>fcf4afcd-da6b-4557-81c6-22a46c325819</nextNode>
+        <printProperty>Circle 3</printProperty>
+    </circleNode>
+    <endNode id="fcf4afcd-da6b-4557-81c6-22a46c325819" type="END">
+        <previousNode>f6e86bc0-9a39-408c-ae6f-74d084454840</previousNode>
+    </endNode>
 </nodes>
