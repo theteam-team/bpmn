@@ -14,7 +14,7 @@ public class ToJava {
      
         for(CircleNode node : nodes.getList())
         {
-            System.out.println(node.getId());
+            node.run();
         }
         System.out.println(nodes);
     }

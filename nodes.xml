@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <circleNodeList>
-    <l id="1"/>
-    <l id="2"/>
-    <l id="3"/>
-    <list id="1"/>
-    <list id="2"/>
-    <list id="3"/>
+    <l id="e2127eec-52fb-4705-8682-4c4f20cadc89" type="Circle"/>
+    <l id="19679617-3472-4a65-b1fb-744a0c7f5588" type="Circle"/>
+    <l id="801681e9-bbe6-4f1f-8ee4-ca3a0e452637" type="Circle"/>
+    <list id="e2127eec-52fb-4705-8682-4c4f20cadc89" type="Circle"/>
+    <list id="19679617-3472-4a65-b1fb-744a0c7f5588" type="Circle"/>
+    <list id="801681e9-bbe6-4f1f-8ee4-ca3a0e452637" type="Circle"/>
 </circleNodeList>

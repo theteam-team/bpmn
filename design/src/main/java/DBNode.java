@@ -1,16 +1,17 @@
-import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAttribute;  
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-class CircleNode extends Node{
+class DBNode extends Node{
 
-    public CircleNode() {
+    public DBNode() {
+
     }
 
-    public CircleNode(String type) {
+    public DBNode(String type) {
+
         this.type = type;
     }
 
@@ -20,9 +21,9 @@ class CircleNode extends Node{
     }
 
     @XmlAttribute
-    public String getType(){
+    public String getType() {
         return type;  
-    }  
+    }
 
     public void setType(String type) {  
         this.type = type;  
