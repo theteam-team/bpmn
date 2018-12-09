@@ -84,9 +84,9 @@ class DBAction extends Action
     }
 
     @Override
-    void run()
+    String run(String element)
     {
-
+        return null;
     }
 
 }

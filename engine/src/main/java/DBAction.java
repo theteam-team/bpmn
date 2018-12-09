@@ -84,9 +84,18 @@ class DBAction extends Action
     }
 
     @Override
-    void run()
+    String run(String element)
     {
+        // Data base check if it has element value to return it
 
+        // For now we consider it found it and it's value will be 
+        // "db value" for element "printProperty"
+
+        if(element.equals("printProperty"))
+            return "db value";
+
+        return null;
     }
+
 
 }

@@ -15,6 +15,8 @@ public class ToJava {
      
         nodes = (NodeList) jaxbUnmarshaller.unmarshal( new File("./../nodes.xml") );
      
+        System.out.println("\n Nodes in the design");
+
         for(Node node : nodes.getAllNodes())
         {
             System.out.println(node.getNId() + " " + node.getType());
@@ -23,7 +25,6 @@ public class ToJava {
         System.out.println("\n Execute Circle Tasks");
         
         Node n = nodes.getStartNode();
-        System.out.println(n.getNId());
 
         while(n.getNextNode() != null)
         {
@@ -43,6 +44,17 @@ public class ToJava {
     static Node getNodeFromID(String id)
     {
         for(Node node : nodes.getAllNodes())
+        {
+            if(node.getNId().equals(id))
+                return node;
+        }
+
+        return null;
+    }
+
+    static Action getActionFromID(String id)
+    {
+        for(Action node : nodes.getDBList())
         {
             if(node.getNId().equals(id))
                 return node;

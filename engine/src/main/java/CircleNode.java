@@ -115,7 +115,31 @@ class CircleNode extends Node
     @Override
     void run()
     {
-        System.out.println(getPrintProperty());
+
+        // This is the process
+        // This process taske is to print the value that
+        // exit in printProperty if it wasn't found it will check for it
+        // in the database which it is connected to 
+        // if it is connected to any
+
+        if(printProperty != null)
+            System.out.println(printProperty);
+            
+        //Checking if Connected to a database
+        else if(connectedAction != null)
+        {
+            String v = ToJava.getActionFromID(connectedAction).run("printProperty");
+
+            if(v != null)
+                System.out.println(v);
+            else
+                System.out.println("No Value Found");
+
+        }
+        
+        else
+            System.out.println("No Value Found");
+
     }
 
 }

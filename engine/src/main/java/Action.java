@@ -15,5 +15,5 @@ public abstract class Action
 
     abstract void setType(String type);
 
-    abstract void run();
+    abstract String run(String element);
 }
