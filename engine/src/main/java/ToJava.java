@@ -17,13 +17,13 @@ public class ToJava {
      
         for(Node node : nodes.getAllNodes())
         {
-            System.out.println(node.getId() + " " + node.getType());
+            System.out.println(node.getNId() + " " + node.getType());
         }
 
         System.out.println("\n Execute Circle Tasks");
         
         Node n = nodes.getStartNode();
-        System.out.println(n.getId());
+        System.out.println(n.getNId());
 
         while(n.getNextNode() != null)
         {
@@ -44,7 +44,7 @@ public class ToJava {
     {
         for(Node node : nodes.getAllNodes())
         {
-            if(node.getId().equals(id))
+            if(node.getNId().equals(id))
                 return node;
         }
 

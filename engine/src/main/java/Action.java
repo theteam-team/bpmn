@@ -2,12 +2,12 @@ import java.util.UUID;
 
 public abstract class Action
 {
-    protected String id;
+    protected String nId;
     protected UUID uuid;
     String type;
 
-    abstract String getId();
-    abstract void setId(String id);
+    abstract String getNId();
+    abstract void setNId(String id);
 
     abstract UUID getUUId();
 

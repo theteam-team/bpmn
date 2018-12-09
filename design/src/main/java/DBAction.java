@@ -23,21 +23,21 @@ class DBAction extends Action
     {
 
         this.type = type;
-        this.id = id.toString();
+        this.nId = id.toString();
 
         this.uuid = id;
     }
 
     @XmlAttribute
-    public String getId()
+    public String getNId()
     {
-        return id.toString();  
+        return nId.toString();  
     }
 
     
-    public void setId(String id)
+    public void setNId(String id)
     {
-        this.id = id;
+        this.nId = id;
     }
 
     public UUID getUUId()
