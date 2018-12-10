@@ -88,7 +88,7 @@ class DBAction extends Action
     {
         // Data base check if it has element value to return it
 
-        // For now we consider it found it and it's value will be 
+        // For now we consider it found it and it's value will be
         // "db value" for element "printProperty"
 
         if(element.equals("printProperty"))

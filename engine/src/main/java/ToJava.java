@@ -1,10 +1,13 @@
 import java.io.File;
+import java.util.Scanner;
 
 import javax.xml.bind.JAXBContext;  
 import javax.xml.bind.JAXBException;  
 import javax.xml.bind.Unmarshaller;
 
 public class ToJava {  
+
+    final static String EXIT = "exit";
 
     static NodeList nodes;
 
@@ -22,24 +25,32 @@ public class ToJava {
             System.out.println(node.getNId() + " " + node.getType());
         }
 
-        System.out.println("\n Execute Circle Tasks");
+        Scanner in = new Scanner(System.in);
+
+        KEvent initiater = new KEvent();
+
+        Key responder = new Key();
+   
+        initiater.addListener(responder);
+        String event = " ";
         
-        Node n = nodes.getStartNode();
-
-        while(n.getNextNode() != null)
+        while(true)
         {
-            n = getNodeFromID(n.getNextNode());
+            
+            event = in.nextLine();
 
-            if(n == null)
+            if(event.equals(EXIT))
             {
-                System.out.println("ID Corrupted");
-                break;
+                in.close();
+                return;
+
             }
 
-            n.run();
-        }
-    }
+            initiater.playEvent(event);
 
+        }
+        
+    }
 
     static Node getNodeFromID(String id)
     {
@@ -62,4 +73,7 @@ public class ToJava {
 
         return null;
     }
+
+
+    
 }

@@ -17,6 +17,11 @@ plugins {
 // Define the main class for the application
 mainClassName = 'App'
 
+run{
+    standardInput = System.in
+}
+
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'

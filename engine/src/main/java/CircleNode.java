@@ -1,6 +1,8 @@
 
 import java.util.UUID;
 
+import java.sql.*;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -121,6 +123,7 @@ class CircleNode extends Node
         // exit in printProperty if it wasn't found it will check for it
         // in the database which it is connected to 
         // if it is connected to any
+              
 
         if(printProperty != null)
             System.out.println(printProperty);
@@ -128,12 +131,58 @@ class CircleNode extends Node
         //Checking if Connected to a database
         else if(connectedAction != null)
         {
-            String v = ToJava.getActionFromID(connectedAction).run("printProperty");
+
+            // Enter Data yourself
+            /*try{  
+
+                //Class.forName("com.mysql.jdbc.Driver");   
+                
+                Connection con=DriverManager.getConnection(  
+                "jdbc:mysql://" + connectedAction.server,"root","root");  
+                //here sonoo is database name, root is username and password  
+    
+                Statement stmt=con.createStatement();
+                ResultSet rs=stmt.executeQuery("select * from emp");
+    
+                while(rs.next())  
+                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+                    
+                con.close();  
+    
+            } catch(Exception e)
+            {
+                System.out.println(e);
+            }*/
+
+
+             // Get data from design
+            /*try{  
+
+                //Class.forName(connectedAction.driver);  
+                
+                Connection con=DriverManager.getConnection(  
+                "jdbc:mysql://localhost:3306/sonoo",connectedAction.user,connectedAction.password);  
+                //here sonoo is database name, root is username and password  
+    
+                Statement stmt=con.createStatement();
+                ResultSet rs=stmt.executeQuery("select * from emp");
+    
+                while(rs.next())  
+                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+                    
+                con.close();  
+    
+            } catch(Exception e)
+            {
+                System.out.println(e);
+            }*/
+
+            /*String v = ToJava.getActionFromID(connectedAction).run("printProperty");
 
             if(v != null)
                 System.out.println(v);
             else
-                System.out.println("No Value Found");
+                System.out.println("No Value Found");*/
 
         }
         
