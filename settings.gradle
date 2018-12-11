@@ -1,1 +1,1 @@
-include ":design", ":engine"
+include ":design", ":engine", ":gui"
