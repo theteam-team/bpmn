@@ -6,13 +6,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlRootElement
-@XmlType(propOrder = { "connectedNode", "nameProperty" })
+//@XmlRootElement
+//@XmlType(propOrder = { "connectedNode", "nameProperty" })
 class DBAction extends Action
 {
 
     private String connectedNode = null;
-
     private String nameProperty = null;
 
     public DBAction() {
@@ -28,7 +27,7 @@ class DBAction extends Action
         this.uuid = id;
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getNId()
     {
         return nId.toString();  
@@ -45,7 +44,7 @@ class DBAction extends Action
         return uuid;  
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getType()
     {
         return type;  
@@ -56,10 +55,9 @@ class DBAction extends Action
         this.type = type;  
     }
 
-    @XmlElement(name = "connectedNode")
+    //@XmlElement(name = "connectedNode")
     public String getConnectedNode()
     {
-
         if(connectedNode != null)
             return connectedNode.toString();
         return null;
@@ -69,19 +67,19 @@ class DBAction extends Action
         this.connectedNode = connectedNode;
     }
 
-    @XmlElement(name = "nameProperty")
+    //@XmlElement(name = "nameProperty")
     public String getNameProperty()
     {
-
         if(nameProperty != null)
             return nameProperty;
         return null;
-        
     }
 
     public void setNameProperty(String nameProperty) {
         this.nameProperty = nameProperty;
     }
+
+
 
     @Override
     String run(String element)

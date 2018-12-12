@@ -33,14 +33,17 @@ import javafx.stage.Stage;
 
 import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlRootElement
-@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction", "printProperty"})
+//@XmlRootElement
+//@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction", "printProperty"})
+//@XmlAccessorType( XmlAccessType.NONE )
 class CircleNode extends Nodes
 {
     private String connectedAction = null;
@@ -75,7 +78,7 @@ class CircleNode extends Nodes
         init();
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getNId()
     {
         return nId.toString();  
@@ -91,7 +94,7 @@ class CircleNode extends Nodes
         return uuid;  
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getType()
     {
         return type;  
@@ -102,7 +105,7 @@ class CircleNode extends Nodes
         this.type = type;  
     }
 
-    @XmlElement(name = "connectedAction")
+    //@XmlElement(name = "connectedAction")
     public String getConnectedAction()
     {
 
@@ -115,7 +118,7 @@ class CircleNode extends Nodes
         this.connectedAction = connectedAction;
     }
 
-    @XmlElement(name = "previousNode")
+    //@XmlElement(name = "previousNode")
     public String getPreviousNode()
     {
 
@@ -129,7 +132,7 @@ class CircleNode extends Nodes
         this.previousNode = previousNode;
     }
 
-    @XmlElement(name = "nextNode")
+    //@XmlElement(name = "nextNode")
     public String getNextNode()
     {
 
@@ -142,7 +145,7 @@ class CircleNode extends Nodes
         this.nextNode = nextNode;
     }
 
-    @XmlElement(name = "printProperty")
+    //@XmlElement(name = "printProperty")
     public String getPrintProperty()
     {
 
@@ -189,20 +192,8 @@ class CircleNode extends Nodes
             public void handle(MouseEvent event) {
 
                 /*if (event.getClickCount() == 2) {
-                    TextInputDialog dialog = new TextInputDialog();
- 
-                    dialog.setTitle("Input");
-                    dialog.setHeaderText("Enter a capital letter:");
- 
-                    Optional<String> result = dialog.showAndWait();
-                    String s;
-  
-                    if (result.isPresent()) {
-                        s = result.get();  
-                        view.setId(s);
-                        nodes.add(view);
-                    }  
-                 } */
+                    getChildren().remove(view); 
+                 }*/
 
                 // record the current mouse X and Y position on Node
                 mousex = event.getSceneX();

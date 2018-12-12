@@ -5,6 +5,8 @@ import javafx.event.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -43,22 +45,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import java.io.FileOutputStream;
+import java.util.UUID;
+
+import javax.xml.bind.JAXBContext;  
+import javax.xml.bind.Marshaller;
+
 
 public class App extends Application {
 
-    public List<Circle> nodes;
     public List<Nodes> savedNodes = new ArrayList<Nodes>();
+
+    public List<XNode> xSavedNodes = new ArrayList<XNode>();
     //public Map<String, KeyCode> map = new HashMap<String, KeyCode>();
     //public CircleNode temp = new CircleNode();
-    public static Pane right;
 
-    public static boolean drawingLine = false;
-    public static Nodes firstNode = null;
 
-    public Optional<Nodes> findNodes(List<Nodes> savedNodes, double x, double y) 
-    {
-        return savedNodes.stream().filter(n -> n.contains(x, y)).findAny();
-    }
+    XNodeList nodeListXML = new XNodeList();
 
     @Override
     public void start(Stage primaryStage) {
@@ -75,7 +78,7 @@ public class App extends Application {
         root.getItems().add(left);
         root.setDividerPosition(0, 1/(double)5);
 
-        right = new Pane(new Label("Working space"));
+        Pane right = new Pane(new Label("Working space"));
         right.setStyle("-fx-background-color: white");
         //right.setAlignment(Pos.TOP_CENTER);
         root.getItems().add(right);
@@ -93,10 +96,8 @@ public class App extends Application {
         Button startButton = new Button("Start");
         Button endButton = new Button("End");
         Button DBButton = new Button("Add DB");
-        //Button readButton = new Button("Read");
         Button printButton = new Button("Print");
         Button connectionButton = new Button("Connection");
-        Button deleteButton = new Button("Delete");
         Button save = new Button("Save");
         //Button saveNodes = new Button("Save Nodes");
         
@@ -118,23 +119,7 @@ public class App extends Application {
             "-fx-max-height: 75px;"
         );
 
-        /*readButton.setStyle(
-            "-fx-background-radius: 0; " +
-            "-fx-min-width: 100px; " +
-            "-fx-min-height: 30px; " +
-            "-fx-max-width: 100px; " +
-            "-fx-max-height: 30px;"
-        );*/
-
         printButton.setStyle(
-            "-fx-background-radius: 0; " +
-            "-fx-min-width: 100px; " +
-            "-fx-min-height: 30px; " +
-            "-fx-max-width: 100px; " +
-            "-fx-max-height: 30px;"
-        );
-
-        deleteButton.setStyle(
             "-fx-background-radius: 0; " +
             "-fx-min-width: 100px; " +
             "-fx-min-height: 30px; " +
@@ -184,19 +169,20 @@ public class App extends Application {
 */
 
         left.getChildren().add(startButton);
-        left.getChildren().add(endButton);
-        //left.getChildren().add(readButton);
-        
+        left.getChildren().add(endButton);      
         left.getChildren().add(printButton);
-        left.getChildren().add(connectionButton);
-        left.getChildren().add(deleteButton);
+        //left.getChildren().add(connectionButton);
         right.getChildren().add(DBButton);
         right.getChildren().add(save); 
 
         startButton.setOnAction(new EventHandler<ActionEvent>() {
+
             public void handle(ActionEvent event) {
                 Circle circle1 = new Circle();
                 StartNode circle = new StartNode(circle1, Types.NodeType(Types.NodeTypes.START), UUID.randomUUID());
+
+                XStartNode xCircle = new XStartNode(Types.NodeType(Types.NodeTypes.START), UUID.randomUUID());
+
                 circle.setStyle(
                     "-fx-background-radius: 5em; " +
                     "-fx-min-width: 45px; " +
@@ -212,14 +198,28 @@ public class App extends Application {
 
                 // add the node to the working space pane
                 right.getChildren().add(circle);
+
+                /*if(savedNodes.size() > 0)
+                {
+                    Nodes last = savedNodes.get(savedNodes.size()-1);
+
+                }*/
+
                 savedNodes.add(circle);
+                
+                xSavedNodes.add(xCircle);
+                nodeListXML.addStartNode(xCircle);
             }
         });
 
         endButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Circle circle1 = new Circle();
-                EndNode circle = new EndNode(circle1, Types.NodeType(Types.NodeTypes.START), UUID.randomUUID());
+
+                EndNode circle = new EndNode(circle1, Types.NodeType(Types.NodeTypes.END), UUID.randomUUID());
+
+                XEndNode xCircle = new XEndNode(Types.NodeType(Types.NodeTypes.END), UUID.randomUUID());
+
                 circle.setStyle(
                     "-fx-background-radius: 5em; " +
                     "-fx-min-width: 45px; " +
@@ -236,20 +236,26 @@ public class App extends Application {
                 // add the node to the working space pane
                 right.getChildren().add(circle);
                 savedNodes.add(circle);
+                
+                xSavedNodes.add(xCircle);
+                nodeListXML.addEndNode(xCircle);
             }
         });
 
-        /*readButton.setOnAction(new EventHandler<ActionEvent>() {
+        printButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Rectangle rectangle1 = new Rectangle();
-                CircleNode rectangle = new CircleNode(rectangle1, Types.NodeType(Types.NodeTypes.START), UUID.randomUUID());
+                CircleNode rectangle = new CircleNode(rectangle1, Types.NodeType(Types.NodeTypes.CIRCLE), UUID.randomUUID());
+
+                XCircleNode xRectangle = new XCircleNode(Types.NodeType(Types.NodeTypes.CIRCLE), UUID.randomUUID());
+
                 rectangle.setStyle(
                     "-fx-background-radius: 0; " +
                     "-fx-min-width: 45px; " +
                     "-fx-min-height: 45px; " +
                     "-fx-max-width: 45px; " +
                     "-fx-max-height: 45px;" +
-                    "-fx-background-color: #adebeb;" +
+                    "-fx-background-color: #99b3e6;" +
                     "-fx-text-fill: black; "
                 );
                 // position the node
@@ -258,85 +264,120 @@ public class App extends Application {
 
                 // add the node to the working space pane
                 right.getChildren().add(rectangle);
+                savedNodes.add(rectangle);
+                
+                xSavedNodes.add(xRectangle);
+                nodeListXML.addCircleNode(xRectangle);
+            }
+        });
+
+
+        /*connectionButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Line line1 = new Line();
+                Lines line = new Lines(savedNodes, line1);
+                right.getChildren().add(line1);
             }
         });*/
 
-        printButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                //Rectangle rectangle1 = new Rectangle();
-                //ProcessNode rectangle = new ProcessNode(rectangle1, Types.NodeType(Types.NodeTypes.START), UUID.randomUUID());
-               /* rectangle.setStyle(
-                    "-fx-background-radius: 0; " +
-                    "-fx-min-width: 45px; " +
-                    "-fx-min-height: 45px; " +
-                    "-fx-max-width: 45px; " +
-                    "-fx-max-height: 45px;" +
-                    "-fx-background-color: #99b3e6;" +
-                    "-fx-text-fill: black; "
-                );*/
-                // position the node
-               // rectangle.setLayoutX(40 + rectangle.getPrefWidth());
-                //rectangle.setLayoutY(40);
-
-                // add the node to the working space pane
-                //right.getChildren().add(rectangle);
-                //savedNodes.add(rectangle);
-            }
-        });
-
-
-        connectionButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                //Line line1 = new Line();
-                //Lines line = new Lines(savedNodes, line1);
-                drawingLine = true;
-
-                // Line line = new Line(100, 10, 10, 110);
-
-                //Line line = new Line(0, 50, 20, 66);
-                //right.getChildren().add(line);
-            }
-        });
-
         DBButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                DBAction db = new DBAction();
 
-                TextInputDialog dialog = new TextInputDialog();
- 
-                dialog.setTitle("Server");
-                dialog.setHeaderText("Enter Database Server:");
- 
-                Optional<String> result = dialog.showAndWait();
-                String s;
-  
-                if (result.isPresent()) {
-                    s = result.get();  
-                    db.setNameProperty(s);
-                }  
+
+                if(xSavedNodes.size() > 0)
+                {
+
+                    DBAction db = new DBAction();
+
+                    XDBAction xDb = new XDBAction(Types.NodeType(Types.NodeTypes.DB), UUID.randomUUID());
+
+                    TextInputDialog dialog = new TextInputDialog();
+    
+                    dialog.setTitle("Server");
+                    dialog.setHeaderText("Enter Database Server:");
+    
+                    Optional<String> result = dialog.showAndWait();
+                    String s;
+    
+                    if (result.isPresent()) {
+                        s = result.get();  
+                        db.setNameProperty(s);
+                        
+                        xDb.setNameProperty(s);
+                    }
+
+                    XNode last = xSavedNodes.get(xSavedNodes.size()-1);
+
+                    xDb.setConnectedNode(last.getNId());
+                    last.setConnectedAction(xDb.getNId());
+
+                    nodeListXML.addDBNode(xDb);
+
+                    System.out.println("Attached to node");     
+                }
+
+                else
+                {
+                    System.out.println("No Nodes to Attach to");     
+
+                }
                 
             }
         });
 
         save.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                for (int i = 0; i < savedNodes.size(); i++)
-                    System.out.println(savedNodes.get(i));
 
+                /*for(Nodes node : savedNodes)
+                {
+                    System.out.println(node.getNId() + " " + node.getType());
+                }*/
+
+
+                xSavedNodes.get(0).setNextNode(xSavedNodes.get(1).getNId());
+
+                System.out.println("ID : " + xSavedNodes.get(0).getNId());
+                System.out.println("Previous ID : " + xSavedNodes.get(0).getPreviousNode());
+                System.out.println("Next ID : " + xSavedNodes.get(0).getNextNode());
+                System.out.println();
+
+                for (int i = 1; i < xSavedNodes.size()-1; i++)
+                {
+                    xSavedNodes.get(i).setNextNode(xSavedNodes.get(i+1).getNId());
+                    xSavedNodes.get(i).setPreviousNode(xSavedNodes.get(i-1).getNId());
+
+                    System.out.println("ID : " + xSavedNodes.get(i).getNId());
+                    System.out.println("Previous ID : " + xSavedNodes.get(i).getPreviousNode());
+                    System.out.println("Next ID : " + xSavedNodes.get(i).getNextNode());
+                    System.out.println();
+                }
+
+                xSavedNodes.get(xSavedNodes.size()-1).setPreviousNode(xSavedNodes.get(xSavedNodes.size()-2).getNId());
+
+                System.out.println("ID : " + xSavedNodes.get(xSavedNodes.size()-1).getNId());  
+                System.out.println("Previous ID : " + xSavedNodes.get(xSavedNodes.size()-1).getPreviousNode());  
+                System.out.println("Next ID : " + xSavedNodes.get(xSavedNodes.size()-1).getNextNode());
+                System.out.println();
+
+                for (int i = 0; i < xSavedNodes.size(); i++)
+                {
+                    System.out.println(xSavedNodes.get(i).getNId() + " " + xSavedNodes.get(i).getType());
+                }
+                System.out.println();
+
+                try {
+
+                    JAXBContext contextObj = JAXBContext.newInstance(XNodeList.class);
+                    Marshaller marshallerObj = contextObj.createMarshaller();
+                    marshallerObj.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        
+                    marshallerObj.marshal(nodeListXML, new FileOutputStream("./../nodes.xml"));
+                    
+                } catch (Exception e) {
+
+                    System.out.println(e);
+                }
                 
-            }
-        });
-
-
-        deleteButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                scene.setOnMousePressed(e -> {
-                    Optional<Nodes> maybeNode = findNodes(savedNodes, e.getSceneX(), e.getSceneY());
-                    if (maybeNode.isPresent()) {
-                        right.getChildren().remove(maybeNode);
-                        savedNodes.remove(maybeNode);
-                    }
-                });
             }
         });
 
@@ -398,7 +439,6 @@ public class App extends Application {
         });
 
 */
-
 
         // finally, show the stage
         

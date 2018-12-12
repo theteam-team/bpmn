@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <nodes>
-    <startNode nId="68f93e83-d8eb-4f43-8b82-72d6dbd40339" type="START">
-        <nextNode>b5679078-6bff-4770-960c-9510a13fdd5c</nextNode>
+    <startNode nId="18dff556-0425-48fb-bd21-c5e7c4ca81e2" type="START">
+        <nextNode>edb95bb5-24ca-4dae-8829-a65386fda438</nextNode>
     </startNode>
-    <dbNode nId="865473a7-5e0e-4b4d-98d6-b74bf1917841" type="DB">
-        <connectedNode>c9d86531-041d-4a74-812d-5c6c5302823f</connectedNode>
+    <dbNode nId="ec170f5f-7c22-47bb-b7c1-bf838028b722" type="DB">
+        <connectedNode>edb95bb5-24ca-4dae-8829-a65386fda438</connectedNode>
+        <nameProperty>ser</nameProperty>
     </dbNode>
-    <circleNode nId="b5679078-6bff-4770-960c-9510a13fdd5c" type="CIRCLE">
-        <previousNode>68f93e83-d8eb-4f43-8b82-72d6dbd40339</previousNode>
-        <nextNode>c9d86531-041d-4a74-812d-5c6c5302823f</nextNode>
-        <printProperty>Circle 1</printProperty>
+    <circleNode nId="edb95bb5-24ca-4dae-8829-a65386fda438" type="CIRCLE">
+        <previousNode>18dff556-0425-48fb-bd21-c5e7c4ca81e2</previousNode>
+        <nextNode>91d73603-ee2c-4a6e-a55e-1e39933da1bf</nextNode>
+        <connectedAction>ec170f5f-7c22-47bb-b7c1-bf838028b722</connectedAction>
     </circleNode>
-    <circleNode nId="c9d86531-041d-4a74-812d-5c6c5302823f" type="CIRCLE">
-        <previousNode>b5679078-6bff-4770-960c-9510a13fdd5c</previousNode>
-        <nextNode>dcc9d683-9a9a-49b6-9afa-4d291ae8d3cb</nextNode>
-        <connectedAction>865473a7-5e0e-4b4d-98d6-b74bf1917841</connectedAction>
-        <printProperty>Circle 2</printProperty>
-    </circleNode>
-    <circleNode nId="dcc9d683-9a9a-49b6-9afa-4d291ae8d3cb" type="CIRCLE">
-        <previousNode>c9d86531-041d-4a74-812d-5c6c5302823f</previousNode>
-        <nextNode>ec004330-aa47-4c06-b436-41b2aed5d1ed</nextNode>
-        <printProperty>Circle 3</printProperty>
-    </circleNode>
-    <endNode nId="ec004330-aa47-4c06-b436-41b2aed5d1ed" type="END">
-        <previousNode>dcc9d683-9a9a-49b6-9afa-4d291ae8d3cb</previousNode>
+    <endNode nId="91d73603-ee2c-4a6e-a55e-1e39933da1bf" type="END">
+        <previousNode>edb95bb5-24ca-4dae-8829-a65386fda438</previousNode>
     </endNode>
 </nodes>

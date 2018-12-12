@@ -124,6 +124,7 @@ class CircleNode extends Node
         // in the database which it is connected to 
         // if it is connected to any
               
+
         if(printProperty != null)
             System.out.println(printProperty);
             
@@ -134,17 +135,17 @@ class CircleNode extends Node
             // Enter Data yourself
             /*try{  
 
-                Class.forName("com.mysql.cj.jdbc.Driver");   
+                //Class.forName("com.mysql.jdbc.Driver");   
                 
                 Connection con=DriverManager.getConnection(  
-                "jdbc:mysql://localhost:3306","root","SQLpass");  
+                "jdbc:mysql://" + connectedAction.server,"root","root");  
                 //here sonoo is database name, root is username and password  
     
                 Statement stmt=con.createStatement();
-                ResultSet rs=stmt.executeQuery("SELECT Name FROM world.city where id=1");
+                ResultSet rs=stmt.executeQuery("select * from emp");
     
                 while(rs.next())  
-                    System.out.println(rs.getString(1));  
+                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
                     
                 con.close();  
     

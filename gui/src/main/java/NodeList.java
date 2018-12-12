@@ -4,20 +4,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "nodes")
-@XmlType(propOrder = { "startNode", "dbNodes", "circleNodes", "endNode"})
+//@XmlRootElement(name = "nodes")
+//@XmlType(propOrder = { "startNode", "dbNodes", "circleNodes", "endNode"})
 public class NodeList
 {
-    @XmlElement(name = "startNode")
+    //@XmlElement(name = "startNode")
     private StartNode startNode;
 
-    @XmlElement(name = "endNode")
+    //@XmlElement(name = "endNode")
     private EndNode endNode;
 
-    @XmlElement(name = "circleNode")
+    //@XmlElement(name = "circleNode")
     private List<CircleNode> circleNodes;
 
-    @XmlElement(name = "dbNode")
+    //@XmlElement(name = "dbNode")
     private List<DBAction> dbNodes;
     
 

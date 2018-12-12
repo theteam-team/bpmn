@@ -29,14 +29,17 @@ import javafx.stage.Stage;
 
 import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlRootElement
-@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction"})
+//@XmlRootElement
+//@XmlType(propOrder = { "previousNode", "nextNode", "connectedAction"})
+//@XmlAccessorType( XmlAccessType.NONE )
 class EndNode extends Nodes
 {
 
@@ -70,7 +73,7 @@ class EndNode extends Nodes
         init();
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getNId()
     {
         return nId.toString();  
@@ -86,7 +89,7 @@ class EndNode extends Nodes
         return uuid;  
     }
 
-    @XmlAttribute
+    //@XmlAttribute
     public String getType()
     {
         return type;  
@@ -97,7 +100,7 @@ class EndNode extends Nodes
         this.type = type;  
     }
 
-    @XmlElement(name = "connectedAction")
+    //@XmlElement(name = "connectedAction")
     public String getConnectedAction()
     {
 
@@ -110,7 +113,7 @@ class EndNode extends Nodes
         this.connectedAction = connectedAction;
     }
 
-    @XmlElement(name = "previousNode")
+    //@XmlElement(name = "previousNode")
     public String getPreviousNode()
     {
 
@@ -124,7 +127,7 @@ class EndNode extends Nodes
         this.previousNode = previousNode;
     }
 
-    @XmlElement(name = "nextNode")
+    //@XmlElement(name = "nextNode")
     public String getNextNode()
     {
 
@@ -230,24 +233,7 @@ class EndNode extends Nodes
             @Override
             public void handle(MouseEvent event) {
 
-                if(App.drawingLine)
-                {
-                    if(App.firstNode == null)
-                        App.firstNode = (Nodes)event.getSource();
-                    else
-                        {
-                            App.drawingLine = false;
-                            App.firstNode = null;
-
-                            System.out.println("Hello");
-
-                            Line line = new Line(500, 50, 200, 10);
-
-                            App.right.getChildren().add(line);
-                        }
-                }
-                else
-                    dragging = false;
+                dragging = false;
             }
         });  
 
