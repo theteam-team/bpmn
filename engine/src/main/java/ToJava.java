@@ -63,7 +63,7 @@ public class ToJava {
         return null;
     }
 
-    static Action getActionFromID(String id)
+    public static Action getActionFromID(String id)
     {
         for(Action node : nodes.getDBList())
         {

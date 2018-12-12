@@ -132,20 +132,21 @@ class CircleNode extends Node
         else if(connectedAction != null)
         {
 
+            //System.out.println(((DBAction)ToJava.getActionFromID(connectedAction)).getNameProperty());
+
             // Enter Data yourself
             /*try{  
-
-                //Class.forName("com.mysql.jdbc.Driver");   
+                Class.forName("com.mysql.cj.jdbc.Driver");   
                 
                 Connection con=DriverManager.getConnection(  
-                "jdbc:mysql://" + connectedAction.server,"root","root");  
-                //here sonoo is database name, root is username and password  
+                "jdbc:mysql://localhost:3306","root","SQLpass");  
+                  
     
                 Statement stmt=con.createStatement();
-                ResultSet rs=stmt.executeQuery("select * from emp");
+                ResultSet rs=stmt.executeQuery("SELECT Name FROM world.city where id=1");
     
                 while(rs.next())  
-                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+                    System.out.println(rs.getString(1));  
                     
                 con.close();  
     
@@ -157,18 +158,19 @@ class CircleNode extends Node
 
              // Get data from design
             /*try{  
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-                //Class.forName(connectedAction.driver);  
+                String server = ((DBAction)ToJava.getActionFromID(connectedAction)).getNameProperty();
                 
                 Connection con=DriverManager.getConnection(  
-                "jdbc:mysql://localhost:3306/sonoo",connectedAction.user,connectedAction.password);  
-                //here sonoo is database name, root is username and password  
+                "jdbc:mysql://" + server,"root","SQLpass");  
+                 
     
                 Statement stmt=con.createStatement();
-                ResultSet rs=stmt.executeQuery("select * from emp");
+                ResultSet rs=stmt.executeQuery("SELECT Name FROM world.city where id=1");
     
                 while(rs.next())  
-                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
+                    System.out.println(rs.getString(1));  
                     
                 con.close();  
     
@@ -178,7 +180,6 @@ class CircleNode extends Node
             }*/
 
             /*String v = ToJava.getActionFromID(connectedAction).run("printProperty");
-
             if(v != null)
                 System.out.println(v);
             else
